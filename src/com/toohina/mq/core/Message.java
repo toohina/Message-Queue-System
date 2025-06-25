@@ -1,15 +1,18 @@
 package com.toohina.mq.core;
 
-public class Message {
-    private final String id;
-    private final String payload;
-    private boolean acknowledged=false;
+import java.util.UUID;
 
-    public Message(String id, String payload) {
+public class Message {
+    private final UUID id;
+    private final String payload;
+    private boolean acknowledged;
+
+    public Message(UUID id, String payload) {
         this.id = id;
         this.payload = payload;
+        this.acknowledged=false;
     }
     public void acknowledge(){acknowledged=true;}
     public String getPayload(){return this.payload;}
-    public String getId(){return this.id;}
+    public UUID getId(){return this.id;}
 }

@@ -7,23 +7,24 @@ public class Consumer implements Runnable{
     private final String id;
     private final MessageQueue mq;
 
-    Consumer(String id,MessageQueue mq){
+    public Consumer(String id, MessageQueue mq){
         this.id=id;
         this.mq=mq;
     }
 
     @Override
     public void run() {
-        Message message=mq.dequeue();
-        System.out.println("Consumer with id: "+this.id+ "has processed message with payload: "+ message.getPayload());
+        while(true) {
+            Message message = mq.dequeue();
+            System.out.println("Consumer with id: " + this.id + " has processed message with payload: " + message.getPayload());
 
-        try {
-            Thread.sleep(500); // simulate processing
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            try {
+                Thread.sleep(500); // simulate processing
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            message.acknowledge();
+            System.out.println("Consumer with id: " + this.id + " has acknowledged message with Id: " + message.getId());
         }
-        message.acknowledge();
-        System.out.println("Consumer with id: "+this.id+ "has acknowledged message with Id: "+ message.getId());
-
     }
 }

@@ -7,7 +7,7 @@ public class MessageQueue {
     private final String name;
     private final Queue<Message> messages;
 
-    MessageQueue(String name){
+    public MessageQueue(String name){
         this.name=name;
         this.messages=new LinkedList<>();
     }
@@ -28,5 +28,4 @@ public class MessageQueue {
         }
         return messages.remove();
     }
-
 }
