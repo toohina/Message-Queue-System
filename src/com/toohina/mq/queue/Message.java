@@ -1,4 +1,4 @@
-package com.toohina.mq.core;
+package com.toohina.mq.queue;
 
 import java.util.UUID;
 

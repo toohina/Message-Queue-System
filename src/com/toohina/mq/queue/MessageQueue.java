@@ -1,6 +1,5 @@
-package com.toohina.mq.broker;
+package com.toohina.mq.queue;
 
-import com.toohina.mq.core.Message;
 import java.util.*;
 
 public class MessageQueue {
@@ -10,6 +9,10 @@ public class MessageQueue {
     public MessageQueue(String name){
         this.name=name;
         this.messages=new LinkedList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public synchronized void enqueue(Message message){
