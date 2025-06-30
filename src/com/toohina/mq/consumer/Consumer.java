@@ -16,6 +16,10 @@ public class Consumer implements Runnable{
     public void run() {
         while(true) {
             Message message = mq.dequeue();
+            if (message.isPoisonPill()) {
+                System.out.println("Consumer " + id + " received poison pill. Shutting down.");
+                break;
+            }
             System.out.println("Consumer with id: " + this.id + " has processed message with payload: " + message.getPayload());
 
             try {

@@ -16,13 +16,16 @@ public class Main {
         C2.start();
 
         for (int i = 0; i < 10; i++) {
-            P1.publish("Task #"+i,mq);
+            P1.publish("Task #"+i,mq,false);
             try{
                 Thread.sleep(300);
             }catch (InterruptedException e){
                 Thread.currentThread().interrupt();
             }
         }
+        //Send as many poison pills as the number of consumers
+        P1.publish("Poison Pill",mq,true);
+        P1.publish("Poison Pill2",mq,true);
 
     }
 }
